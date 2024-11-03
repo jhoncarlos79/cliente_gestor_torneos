@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllTorneo } from "../api/torneo.api";
-
+import Table from 'react-bootstrap/Table';
 
 export function TorneosList(){
     const [torneos, setTorneos] = useState([]);
@@ -15,17 +15,29 @@ export function TorneosList(){
 
     return (
         <div>
+            <Table striped>
+            <thead>
+                <tr>                
+                <th>NOMBRE</th>
+                <th>FECHA DE INICIO</th>
+                <th>FECHA DE FIN</th>
+                <th>DEPORTE</th>                
+                </tr>
+            </thead>
+            <tbody>
             {
                 torneos.map(torneos => (
-                    <div key={torneos.id_torneo}>
-                        <h1>{torneos.nombre}</h1>
-                        <p>{torneos.fecha_inicio}</p>
-                        <p>{torneos.fecha_fin}</p>
-                        <p>{torneos.id_deporte}</p>
-                    </div>
+                    <tr key={torneos.id_torneo}>                        
+                        <td>{torneos.nombre}</td>
+                        <td>{torneos.fecha_inicio}</td>
+                        <td>{torneos.fecha_fin}</td>
+                        <td>{torneos.id_deporte}</td>
+                    </tr>
                     )
                 )
             }
+            </tbody>
+            </Table>
         </div>
     )
 }

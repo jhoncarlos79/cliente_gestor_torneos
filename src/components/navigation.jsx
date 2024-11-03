@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export function Navigation(){
     return(
         <div>
-            <h1><Link to="/deportes">Aplicacion de Deportes</Link></h1>
-            <Link to="/deportes-add">Agregar Nuevo Deporte</Link>
-            <h1><Link to="/torneos">Aplicacion de Torneos</Link></h1>
-            <Link to="/torneos-add">Agregar Nuevo Torneo</Link>
+            <ListGroup horizontal>
+                <ListGroup.Item><Link to="/deportes">Aplicacion de Deportes</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/deportes-add">Agregar Nuevo Deporte</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/torneos">Aplicacion de Torneos</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/torneos-add">Agregar Nuevo Torneo</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/equipos">Aplicacion de Equipos</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/equipos-add">Agregar Nuevo Equipo</Link></ListGroup.Item>
+            </ListGroup>
         </div>
     )
 }

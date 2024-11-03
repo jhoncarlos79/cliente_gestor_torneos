@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllDeporte } from "../api/deporte.api";
-
+import Table from 'react-bootstrap/Table';
 
 export function DeportesList(){
     const [deportes, setDeportes] = useState([]);
@@ -15,15 +15,25 @@ export function DeportesList(){
 
     return (
         <div>
+            <Table striped>
+            <thead>
+                <tr>                
+                <th>NOMBRE</th>
+                <th>NUMERO DE JUGADORES</th>
+                </tr>
+            </thead>
+            <tbody>
             {
                 deportes.map(deportes => (
-                    <div key={deportes.id_deporte}>
-                        <h1>{deportes.nombre}</h1>
-                        <p>{deportes.num_jugadores}</p>
-                    </div>
+                    <tr key={deportes.id_deporte}>                        
+                        <td>{deportes.nombre}</td>
+                        <td>{deportes.num_jugadores}</td>
+                    </tr>
                     )
                 )
             }
+            </tbody>
+            </Table>
         </div>
     )
 }
