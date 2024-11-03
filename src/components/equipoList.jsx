@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllEquipo} from "../api/equipo.api";
+import { getAllEquipo } from "../api/equipo.api";
 import Table from 'react-bootstrap/Table';
 
 export function EquipoList(){

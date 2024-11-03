@@ -13,6 +13,8 @@ export function Navigation(){
                 <ListGroup.Item><Link to="/equipos-add">Agregar Nuevo Equipo</Link></ListGroup.Item>
                 <ListGroup.Item><Link to="/inscripciones">Aplicacion de Inscripcion</Link></ListGroup.Item>
                 <ListGroup.Item><Link to="/inscripciones-add">Agregar Nuevo Inscripcion</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/jugadores">Aplicacion de Jugador</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/jugadores-add">Agregar Nuevo Jugador</Link></ListGroup.Item>
             </ListGroup>
         </div>
     )

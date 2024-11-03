@@ -10,6 +10,8 @@ import { EquipoPagina } from "./pages/equipoPagina"
 import { EquipoForm } from "./pages/equipoForm"
 import { InscripcionePagina } from "./pages/inscripcionePagina"
 import { InscripcioneForm } from "./pages/inscripcioneForm"
+import { JugadorePagina } from "./pages/jugadorePagina"
+import { JugadoreForm } from "./pages/jugadoreForm"
 import 'bootstrap/dist/css/bootstrap.min.css';
 // Importamos componentes
 
@@ -29,6 +31,8 @@ function App() {
         <Route path="/equipos-add" element={<EquipoForm/>}></Route>
         <Route path="/inscripciones" element={<InscripcionePagina/>}></Route>
         <Route path="/inscripciones-add" element={<InscripcioneForm/>}></Route>
+        <Route path="/jugadores" element={<JugadorePagina/>}></Route>
+        <Route path="/jugadores-add" element={<JugadoreForm/>}></Route>
       </Routes>
     </BrowserRouter>
   )
