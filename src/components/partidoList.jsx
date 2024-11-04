@@ -22,6 +22,10 @@ export function PartidoList(){
                 <th>HORA</th>
                 <th>LUGAR</th>
                 <th>TORNEO</th>
+                <th>EQUIPO1</th>
+                <th>RESULTADO EQUIPO1</th>
+                <th>EQUIPO2</th>
+                <th>RESULTADO EQUIPO2</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +36,10 @@ export function PartidoList(){
                         <td>{partido.hora}</td>
                         <td>{partido.lugar}</td>
                         <td>{partido.id_torneo}</td>
+                        <td>{partido.id_equipo1}</td>                        
+                        <td>{partido.id_equipo2}</td>
+                        <td>{partido.resultado_equipo1}</td>
+                        <td>{partido.resultado_equipo2}</td>
                     </tr>
                     )
                 )
