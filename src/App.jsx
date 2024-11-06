@@ -28,6 +28,7 @@ function App() {
         <Route path="/" element={<Navigate to="/deportes"/>}></Route>
         <Route path="/deportes" element={<DeportePagina/>}></Route>
         <Route path="/deportes-add" element={<DeporteForm/>}></Route>
+        <Route path="/deportes-add/:id" element={<DeporteForm/>}></Route>
         <Route path="/torneos" element={<TorneoPagina/>}></Route>
         <Route path="/torneos-add" element={<TorneoForm/>}></Route>
         <Route path="/equipos" element={<EquipoPagina/>}></Route>
