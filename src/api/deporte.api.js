@@ -10,6 +10,8 @@ export const getAllDeporte = () => deportesApi.get('/')// Aqui coloco la ruta de
 
 export const getDeporte = (id) => deportesApi.get('/' + id + '/')
 
-export const createDeporte = (libro) => deportesApi.post('/', libro)
+export const createDeporte = (deporte) => deportesApi.post('/', deporte)
 
 export const deleteDeporte = (id) => deportesApi.delete('/' + id + '/')
+
+export const updateDeporte = (id, deporte) => deportesApi.put('/' + id + '/', deporte)

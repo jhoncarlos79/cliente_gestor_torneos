@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from  'react-router-dom'
-import { createDeporte } from '../api/deporte.api';
-import { deleteDeporte } from '../api/deporte.api';
+import { useEffect } from 'react';
+import { createDeporte, updateDeporte, deleteDeporte, getDeporte } from '../api/deporte.api';
 
 export function DeporteForm(){
     
-    const {register, handleSubmit, formState:{
+    const {register, handleSubmit, setValue, formState:{
         errors
     }}=useForm();
     
@@ -15,10 +15,28 @@ export function DeporteForm(){
     console.log(param);
     
     const onSubmit = handleSubmit(async data => {
-        console.log(data);
-        const res=await createDeporte(data);
-        console.log(data);
+        //console.log(data);
+        if( param.id ){
+            const res=await updateDeporte(param.id, data);  // Actualizar un deporte
+        }else{
+            const res=await createDeporte(data);  // Crear un deporte
+        }        
+        navigate("/deportes")
     })
+
+    useEffect(() => {
+        async function loadDeporte() {
+            if (param.id) {
+                const res = await getDeporte(param.id);
+                const deporte = res.data;
+                console.log(deporte);
+                // Setea los valores en el formulario
+                setValue('nombre', deporte.nombre);
+                setValue('num_jugadores', deporte.num_jugadores);
+            }
+        }
+        loadDeporte();
+    }, [param.id, setValue]);
     
     return (        
         <div>
@@ -33,7 +51,7 @@ export function DeporteForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el deporte?");
                     if (accepted){
-                        await deleteDeporte(param.id);
+                        await deleteDeporte(param.id);  // Eliminar un deporte
                         navigate("/deportes")
                     }
                 }}>Borrar</button>)}
