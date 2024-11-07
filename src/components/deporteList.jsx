@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllDeporte } from "../api/deporte.api";
+import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 export function DeportesList(){
@@ -12,6 +13,8 @@ export function DeportesList(){
         }
         loadDeportes();
     },[]);
+
+    const navigate=useNavigate();
 
     return (
         <div>
@@ -26,7 +29,12 @@ export function DeportesList(){
             {
                 deportes.map(deportes => (
                     <tr key={deportes.id_deporte}>                        
-                        <td>{deportes.nombre}</td>
+                        <td><a href=""
+                        // Para poder eliminar o hacer una accion sobre un deporte se arma la ruta con el id_deporte
+                            onClick={()=>{
+                                navigate('/deportes-add/' + deportes.id_deporte)
+                            }}
+                        >{deportes.nombre}</a></td>
                         <td>{deportes.num_jugadores}</td>
                     </tr>
                     )

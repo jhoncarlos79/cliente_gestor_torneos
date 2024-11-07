@@ -34,7 +34,7 @@ export function DeporteForm(){
                     const accepted = window.confirm("¿Desea Eliminar el deporte?");
                     if (accepted){
                         await deleteDeporte(param.id);
-                        navigate("/libros")
+                        navigate("/deportes")
                     }
                 }}>Borrar</button>)}
         </div>

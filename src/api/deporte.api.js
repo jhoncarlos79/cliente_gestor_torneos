@@ -8,6 +8,8 @@ const deportesApi = axios.create({
 
 export const getAllDeporte = () => deportesApi.get('/')// Aqui coloco la ruta del backend que vamos a usar
 
+export const getDeporte = (id) => deportesApi.get('/' + id + '/')
+
 export const createDeporte = (libro) => deportesApi.post('/', libro)
 
 export const deleteDeporte = (id) => deportesApi.delete('/' + id + '/')
