@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllTorneo } from "../api/torneo.api";
+import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 export function TorneosList(){
@@ -12,6 +13,8 @@ export function TorneosList(){
         }
         loadTorneos();
     },[]);
+
+    const navigate=useNavigate();
 
     return (
         <div>
@@ -28,7 +31,12 @@ export function TorneosList(){
             {
                 torneos.map(torneos => (
                     <tr key={torneos.id_torneo}>                        
-                        <td>{torneos.nombre}</td>
+                        <td><a href=""
+                        // Para poder eliminar o hacer una accion sobre un deporte se arma la ruta con el id_deporte
+                            onClick={()=>{
+                                navigate('/torneos-add/' + torneos.id_torneo)
+                            }}
+                        >{torneos.nombre}</a></td>
                         <td>{torneos.fecha_inicio}</td>
                         <td>{torneos.fecha_fin}</td>
                         <td>{torneos.id_deporte}</td>

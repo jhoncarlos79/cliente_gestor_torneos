@@ -31,6 +31,7 @@ function App() {
         <Route path="/deportes-add/:id" element={<DeporteForm/>}></Route>
         <Route path="/torneos" element={<TorneoPagina/>}></Route>
         <Route path="/torneos-add" element={<TorneoForm/>}></Route>
+        <Route path="/torneos-add/:id" element={<TorneoForm/>}></Route>
         <Route path="/equipos" element={<EquipoPagina/>}></Route>
         <Route path="/equipos-add" element={<EquipoForm/>}></Route>
         <Route path="/equipos-add/:id" element={<EquipoForm/>}></Route>
