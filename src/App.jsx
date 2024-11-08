@@ -43,6 +43,7 @@ function App() {
         <Route path="/jugadores-add/:id" element={<JugadoreForm/>}></Route>
         <Route path="/partidos" element={<PartidoPagina/>}></Route>
         <Route path="/partidos-add" element={<PartidoForm/>}></Route>
+        <Route path="/partidos-add/:id" element={<PartidoForm/>}></Route>
       </Routes>
     </BrowserRouter>
   )
