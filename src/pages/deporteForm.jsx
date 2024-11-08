@@ -16,21 +16,25 @@ export function DeporteForm(){
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
-        if( param.id ){
+        if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
+            console.log("Modificando...");
             const res=await updateDeporte(param.id, data);  // Actualizar un deporte
         }else{
             const res=await createDeporte(data);  // Crear un deporte
+            console.log(res);
         }        
         navigate("/deportes")
     })
+
+    // Para rellenar el formulario si hay un parametro en la url
 
     useEffect(() => {
         async function loadDeporte() {
             if (param.id) {
                 const res = await getDeporte(param.id);
                 const deporte = res.data;
-                console.log(deporte);
-                // Setea los valores en el formulario
+                //console.log(res);
+                // Coloca los valores en el formulario
                 setValue('nombre', deporte.nombre);
                 setValue('num_jugadores', deporte.num_jugadores);
             }
