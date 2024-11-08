@@ -48,9 +48,9 @@ export function EquipoForm(){
                 <input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
                 {errors.nombre && <span>El nombre del equipo es requerido</span>}
                 <input type="number" placeholder='id_usuario' {...register("id_usuario", {required: true})}/>
-                {errors.num_jugadores && <span>El id de usuario es requerido</span>}
+                {errors.id_usuario && <span>El id de usuario es requerido</span>}
                 <input type="number" placeholder='id_deporte' {...register("id_deporte", {required: true})}/>
-                {errors.num_jugadores && <span>El id de deporte es requerido</span>}
+                {errors.id_deporte && <span>El id de deporte es requerido</span>}
                 <button>Guardar</button>
             </form>
             {param.id && (

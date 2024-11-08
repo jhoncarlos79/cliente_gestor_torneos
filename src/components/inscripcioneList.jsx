@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllInscripcione} from "../api/inscripcione.api";
+import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 export function InscripcioneList(){
@@ -13,12 +14,14 @@ export function InscripcioneList(){
         loadInscripciones();
     },[]);
 
+    const navigate=useNavigate();
+
     return (
         <div>
             <Table striped>
             <thead>
                 <tr>                
-                <th>inscripcione</th>
+                <th>EQUIPO</th>
                 <th>TORNEO</th>
                 <th>FECHA INSCRIPCION</th>
                 </tr>
@@ -27,7 +30,11 @@ export function InscripcioneList(){
             {
                 inscripcione.map(inscripcione => (
                     <tr key={inscripcione.id_inscripciones}>                        
-                        <td>{inscripcione.id_equipo}</td>
+                        <td><a href="" 
+                            onClick={()=>{
+                                navigate('/inscripciones-add/' + inscripcione.id_inscripciones)
+                            }}
+                        >{inscripcione.id_equipo}</a></td>
                         <td>{inscripcione.id_torneo}</td>
                         <td>{inscripcione.fecha_inscripcion}</td>
                     </tr>
