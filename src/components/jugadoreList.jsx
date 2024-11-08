@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllJugadore } from "../api/jugadore.api"
+import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 export function JugadoreList(){
@@ -12,6 +13,8 @@ export function JugadoreList(){
         }
         loadJugadores();
     },[]);
+
+    const navigate=useNavigate();
 
     return (
         <div>
@@ -32,7 +35,11 @@ export function JugadoreList(){
                 jugadore.map(jugadore => (
                     <tr key={jugadore.id_jugador}>
                         <td><img src={jugadore.foto} width="50" height="50"/></td>                      
-                        <td>{jugadore.nombre}</td>
+                        <td><a href=""
+                            onClick={()=>{
+                                navigate('/jugadores-add/' + jugadore.id_jugador)
+                            }}
+                        >{jugadore.nombre}</a></td>
                         <td>{jugadore.fecha_nacimiento}</td>
                         <td>{jugadore.estatura}</td>
                         <td>{jugadore.peso}</td>
