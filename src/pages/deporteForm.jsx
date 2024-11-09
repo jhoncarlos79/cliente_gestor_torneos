@@ -12,16 +12,16 @@ export function DeporteForm(){
     const navigate = useNavigate();
     const param = useParams();
 
-    console.log(param);
+    //console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
-            console.log("Modificando...");
+            //console.log("Modificando...");
             const res=await updateDeporte(param.id, data);  // Actualizar un deporte
         }else{
             const res=await createDeporte(data);  // Crear un deporte
-            console.log(res);
+            //console.log(res);
         }        
         navigate("/deportes")
     })

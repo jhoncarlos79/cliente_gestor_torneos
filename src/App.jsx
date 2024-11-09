@@ -14,18 +14,40 @@ import { JugadorePagina } from "./pages/jugadorePagina"
 import { JugadoreForm } from "./pages/jugadoreForm"
 import { PartidoPagina } from "./pages/partidoPagina"
 import { PartidoForm } from "./pages/partidoForm"
+// Paginas de autorizacion
+import { Login } from "./pages/login"
+import { Register } from "./pages/register"
+import { Home } from "./pages/home"
+import { NoFound } from "./pages/nofound"
+import { ProtectedRoute } from "./components/ProtectedRoute"
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Importamos componentes
 
 import { Navigation } from "./components/navigation"
 
+function Logout(){
+  localStorage.clear();
+  return <Navigate to="/login"/>
+}
+
+function RegisterAndLogout(){
+  localStorage.clear();
+  return <Register/>
+}
+
 function App() {
   return (
     <BrowserRouter>
       <Navigation/>
       <Routes>
-        <Route path="/" element={<Navigate to="/deportes"/>}></Route>
+        <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/logout" element={<Logout/>}/>
+        <Route path="/register" element={<RegisterAndLogout/>}/>
+        {/*<Route path="/" element={<Navigate to="/deportes"/>}></Route>*/}
         <Route path="/deportes" element={<DeportePagina/>}></Route>
         <Route path="/deportes-add" element={<DeporteForm/>}></Route>
         <Route path="/deportes-add/:id" element={<DeporteForm/>}></Route>
