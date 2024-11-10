@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createDeporte, updateDeporte, deleteDeporte, getDeporte } from '../api/deporte.api';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 export function DeporteForm(){
     
@@ -12,16 +13,26 @@ export function DeporteForm(){
     const navigate = useNavigate();
     const param = useParams();
 
+    // Obtenemos el token jwt
+    const token = localStorage.getItem(ACCESS_TOKEN);
+
+    console.log(token);
+
+    const authHeaders={
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }
     //console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             //console.log("Modificando...");
-            const res=await updateDeporte(param.id, data);  // Actualizar un deporte
+            const res=await updateDeporte(param.id, data, authHeaders);  // Actualizar un deporte
         }else{
-            const res=await createDeporte(data);  // Crear un deporte
-            //console.log(res);
+            const res=await createDeporte(data, authHeaders);  // Crear un deporte
+            console.log(res);
         }        
         navigate("/deportes")
     })
@@ -33,7 +44,7 @@ export function DeporteForm(){
             if (param.id) {
                 const res = await getDeporte(param.id);
                 const deporte = res.data;
-                //console.log(res);
+                console.log(res);
                 // Coloca los valores en el formulario
                 setValue('nombre', deporte.nombre);
                 setValue('num_jugadores', deporte.num_jugadores);
@@ -55,7 +66,7 @@ export function DeporteForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el deporte?");
                     if (accepted){
-                        await deleteDeporte(param.id);  // Eliminar un deporte
+                        await deleteDeporte(param.id, authHeaders);  // Eliminar un deporte
                         navigate("/deportes")
                     }
                 }}>Borrar</button>)}

@@ -1,8 +1,22 @@
 import axios from 'axios';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 const deportesApi = axios.create({
     baseURL: 'http://127.0.0.1:8000/apideportes/'
 })
+
+// Anadir token a la peticiones
+
+deportesApi.interceptors.request.use(config=>{
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    if (token && config.method !== 'GET') {
+        config.headers['Authorization']=`Bearer ${token}`;
+    }
+    return config;
+}, error=>{
+    return Promise.reject(error);
+});
+
 
 // Al añadir la constante ya no es necesario el return por que se puede hacer una sola linea
 
