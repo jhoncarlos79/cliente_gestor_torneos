@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createInscripcione, updateInscripcione, deleteInscripcione, getInscripcione } from '../api/inscripcione.api';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 export function InscripcioneForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -11,15 +12,26 @@ export function InscripcioneForm(){
     const navigate = useNavigate();
     const param = useParams();
 
+    // Obtenemos el token jwt
+    const token = localStorage.getItem(ACCESS_TOKEN);
+
+    console.log(token);
+
+    const authHeaders={
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
     console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             console.log("Modificando...");
-            const res=await updateInscripcione(param.id, data);  // Actualizar un inscripcione
+            const res=await updateInscripcione(param.id, data, authHeaders);  // Actualizar un inscripcione
         }else{
-            const res=await createInscripcione(data);  // Crear un inscripcione
+            const res=await createInscripcione(data, authHeaders);  // Crear un inscripcione
             console.log(res);
         }        
         navigate("/inscripciones")
@@ -54,7 +66,7 @@ export function InscripcioneForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar la inscripcion?");
                     if (accepted){
-                        await deleteInscripcione(param.id);  // Eliminar una Inscripcion
+                        await deleteInscripcione(param.id, authHeaders);  // Eliminar una Inscripcion
                         navigate("/inscripciones")
                     }
                 }}>Borrar</button>)}

@@ -49,23 +49,23 @@ function App() {
         <Route path="/register" element={<RegisterAndLogout/>}/>
         {/*<Route path="/" element={<Navigate to="/deportes"/>}></Route>*/}
         <Route path="/deportes" element={<DeportePagina/>}></Route>
-        <Route path="/deportes-add" element={<DeporteForm/>}></Route>
-        <Route path="/deportes-add/:id" element={<DeporteForm/>}></Route>
+        <Route path="/deportes-add" element={<ProtectedRoute><DeporteForm/></ProtectedRoute>}></Route>
+        <Route path="/deportes-add/:id" element={<ProtectedRoute><DeporteForm/></ProtectedRoute>}></Route>
         <Route path="/torneos" element={<TorneoPagina/>}></Route>
-        <Route path="/torneos-add" element={<TorneoForm/>}></Route>
-        <Route path="/torneos-add/:id" element={<TorneoForm/>}></Route>
+        <Route path="/torneos-add" element={<ProtectedRoute><TorneoForm/></ProtectedRoute>}></Route>
+        <Route path="/torneos-add/:id" element={<ProtectedRoute><TorneoForm/></ProtectedRoute>}></Route>
         <Route path="/equipos" element={<EquipoPagina/>}></Route>
-        <Route path="/equipos-add" element={<EquipoForm/>}></Route>
-        <Route path="/equipos-add/:id" element={<EquipoForm/>}></Route>
+        <Route path="/equipos-add" element={<ProtectedRoute><EquipoForm/></ProtectedRoute>}></Route>
+        <Route path="/equipos-add/:id" element={<ProtectedRoute><EquipoForm/></ProtectedRoute>}></Route>
         <Route path="/inscripciones" element={<InscripcionePagina/>}></Route>
-        <Route path="/inscripciones-add" element={<InscripcioneForm/>}></Route>
-        <Route path="/inscripciones-add/:id" element={<InscripcioneForm/>}></Route>
+        <Route path="/inscripciones-add" element={<ProtectedRoute><InscripcioneForm/></ProtectedRoute>}></Route>
+        <Route path="/inscripciones-add/:id" element={<ProtectedRoute><InscripcioneForm/></ProtectedRoute>}></Route>
         <Route path="/jugadores" element={<JugadorePagina/>}></Route>
-        <Route path="/jugadores-add" element={<JugadoreForm/>}></Route>
-        <Route path="/jugadores-add/:id" element={<JugadoreForm/>}></Route>
+        <Route path="/jugadores-add" element={<ProtectedRoute><JugadoreForm/></ProtectedRoute>}></Route>
+        <Route path="/jugadores-add/:id" element={<ProtectedRoute><JugadoreForm/></ProtectedRoute>}></Route>
         <Route path="/partidos" element={<PartidoPagina/>}></Route>
-        <Route path="/partidos-add" element={<PartidoForm/>}></Route>
-        <Route path="/partidos-add/:id" element={<PartidoForm/>}></Route>
+        <Route path="/partidos-add" element={<ProtectedRoute><PartidoForm/></ProtectedRoute>}></Route>
+        <Route path="/partidos-add/:id" element={<ProtectedRoute><PartidoForm/></ProtectedRoute>}></Route>
       </Routes>
     </BrowserRouter>
   )

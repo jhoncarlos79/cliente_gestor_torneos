@@ -22,7 +22,7 @@ export function DeporteForm(){
         headers: {
             'Authorization': `Bearer ${token}`
         }
-    }
+    };
     //console.log(param);
     
     const onSubmit = handleSubmit(async data => {

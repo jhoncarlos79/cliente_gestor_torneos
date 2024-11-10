@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createPartido, updatePartido, deletePartido, getPartido } from '../api/partido.api';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 export function PartidoForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -11,15 +12,26 @@ export function PartidoForm(){
     const navigate = useNavigate();
     const param = useParams();
 
+    // Obtenemos el token jwt
+    const token = localStorage.getItem(ACCESS_TOKEN);
+
+    console.log(token);
+
+    const authHeaders={
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
     console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             console.log("Modificando...");
-            const res=await updatePartido(param.id, data);  // Actualizar un partido
+            const res=await updatePartido(param.id, data, authHeaders);  // Actualizar un partido
         }else{
-            const res=await createPartido(data);  // Crear un partido
+            const res=await createPartido(data, authHeaders);  // Crear un partido
             console.log(res);
         }        
         navigate("/partidos")
@@ -72,7 +84,7 @@ export function PartidoForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el partido?");
                     if (accepted){
-                        await deletePartido(param.id);  // Eliminar un partido
+                        await deletePartido(param.id, authHeaders);  // Eliminar un partido
                         navigate("/partidos")
                     }
                 }}>Borrar</button>)}

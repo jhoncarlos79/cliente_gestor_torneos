@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createJugadore, updateJugadore, deleteJugadore, getJugadore } from '../api/jugadore.api';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 export function JugadoreForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -11,15 +12,26 @@ export function JugadoreForm(){
     const navigate = useNavigate();
     const param = useParams();
 
+    // Obtenemos el token jwt
+    const token = localStorage.getItem(ACCESS_TOKEN);
+
+    console.log(token);
+
+    const authHeaders={
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
     console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             console.log("Modificando...");
-            const res=await updateJugadore(param.id, data);  // Actualizar un jugadore
+            const res=await updateJugadore(param.id, data, authHeaders);  // Actualizar un jugadore
         }else{
-            const res=await createJugadore(data);  // Crear un jugadore
+            const res=await createJugadore(data, authHeaders);  // Crear un jugadore
             console.log(res);
         }        
         navigate("/jugadores")
@@ -66,7 +78,7 @@ export function JugadoreForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el jugador?");
                     if (accepted){
-                        await deleteJugadore(param.id);  // Eliminar un jugadore
+                        await deleteJugadore(param.id, authHeaders);  // Eliminar un jugadore
                         navigate("/jugadores")
                     }
                 }}>Borrar</button>)}

@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createTorneo, updateTorneo, deleteTorneo, getTorneo } from '../api/torneo.api';
-
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 export function TorneoForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -12,15 +12,26 @@ export function TorneoForm(){
     const navigate = useNavigate();
     const param = useParams();
 
+    // Obtenemos el token jwt
+    const token = localStorage.getItem(ACCESS_TOKEN);
+
+    console.log(token);
+
+    const authHeaders={
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
     console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             console.log("Modificando...");
-            const res=await updateTorneo(param.id, data);  // Actualizar un torneo
+            const res=await updateTorneo(param.id, data, authHeaders);  // Actualizar un torneo
         }else{
-            const res=await createTorneo(data);  // Crear un torneo
+            const res=await createTorneo(data, authHeaders);  // Crear un torneo
             console.log(res);
         }        
         navigate("/torneos")
@@ -61,7 +72,7 @@ export function TorneoForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el torneo?");
                     if (accepted){
-                        await deleteTorneo(param.id);  // Eliminar un torneo
+                        await deleteTorneo(param.id, authHeaders);  // Eliminar un torneo
                         navigate("/torneos")
                     }
                 }}>Borrar</button>)}
