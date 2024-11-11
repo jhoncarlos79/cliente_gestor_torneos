@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllTorneo } from "../api/torneo.api";
 import { useNavigate } from "react-router-dom";
+import { DeporteValue } from "../components/deporteValue"
 import Table from 'react-bootstrap/Table';
 
 export function TorneosList(){
@@ -39,7 +40,7 @@ export function TorneosList(){
                         >{torneos.nombre}</a></td>
                         <td>{torneos.fecha_inicio}</td>
                         <td>{torneos.fecha_fin}</td>
-                        <td>{torneos.id_deporte}</td>
+                        <td><DeporteValue id={torneos.id_deporte}/></td>
                     </tr>
                     )
                 )

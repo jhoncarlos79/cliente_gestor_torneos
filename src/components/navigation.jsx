@@ -17,6 +17,7 @@ export function Navigation(){
                 <ListGroup.Item><Link to="/jugadores-add">Agregar Nuevo Jugador</Link></ListGroup.Item>
                 <ListGroup.Item><Link to="/partidos">Aplicacion de Partidos</Link></ListGroup.Item>
                 <ListGroup.Item><Link to="/partidos-add">Agregar Nuevo Partido</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/logout">Cerrar Session</Link></ListGroup.Item>
             </ListGroup>
         </div>
     )

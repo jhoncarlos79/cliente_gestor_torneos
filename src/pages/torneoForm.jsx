@@ -3,6 +3,7 @@ import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createTorneo, updateTorneo, deleteTorneo, getTorneo } from '../api/torneo.api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import { DeporteCombo } from '../components/deporteCombo';
 
 export function TorneoForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -26,7 +27,7 @@ export function TorneoForm(){
     console.log(param);
     
     const onSubmit = handleSubmit(async data => {
-        //console.log(data);
+        console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             console.log("Modificando...");
             const res=await updateTorneo(param.id, data, authHeaders);  // Actualizar un torneo
@@ -63,8 +64,9 @@ export function TorneoForm(){
                 <input type="date" placeholder='fecha_inicio' {...register("fecha_inicio", {required: true})}/>
                 {errors.fecha_inicio && <span>El fecha de inicio es requerida</span>}                
                 <input type="date" placeholder='fecha_fin' {...register("fecha_fin", {required: true})}/>
-                {errors.fecha_fin && <span>El fecha de fin es requerida</span>}                
-                <input type="number" placeholder='id_deporte' {...register("id_deporte", {required: true})}/>
+                {errors.fecha_fin && <span>El fecha de fin es requerida</span>}
+                <DeporteCombo register={register} setValue={setValue}/>                
+                {/*<input type="number" placeholder='id_deporte' {...register("id_deporte", {required: true})}/>*/}
                 {errors.id_deporte && <span>El id de deporte es requerido</span>}
                 <button>Guardar</button>
             </form>
