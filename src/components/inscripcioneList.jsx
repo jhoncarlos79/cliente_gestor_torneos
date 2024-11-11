@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllInscripcione} from "../api/inscripcione.api";
 import { useNavigate } from "react-router-dom";
 import { EquipoValue } from "../components/equipoValue"
+import { TorneoValue } from "./torneoValue";
 import Table from 'react-bootstrap/Table';
 
 export function InscripcioneList(){
@@ -36,7 +37,7 @@ export function InscripcioneList(){
                                 navigate('/inscripciones-add/' + inscripcione.id_inscripciones)
                             }}
                         ><EquipoValue id={inscripcione.id_equipo}/></a></td>
-                        <td>{inscripcione.id_torneo}</td>
+                        <td><TorneoValue id={inscripcione.id_torneo}/></td>
                         <td>{inscripcione.fecha_inscripcion}</td>
                     </tr>
                     )

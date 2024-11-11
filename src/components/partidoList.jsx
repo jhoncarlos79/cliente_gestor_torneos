@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllPartido } from '../api/partido.api'
 import { useNavigate } from "react-router-dom";
 import { EquipoValue } from "./equipoValue";
+import { TorneoValue } from "./torneoValue";
 import Table from 'react-bootstrap/Table';
 
 export function PartidoList(){
@@ -43,7 +44,7 @@ export function PartidoList(){
                                 navigate('/partidos-add/' + partido.id_partido)
                             }}
                         >{partido.lugar}</a></td>
-                        <td>{partido.id_torneo}</td>
+                        <td><TorneoValue id={partido.id_torneo}/></td>
                         <td><EquipoValue id={partido.id_equipo1}/></td>
                         <td>{partido.resultado_equipo1}</td>
                         <td><EquipoValue id={partido.id_equipo2}/></td>

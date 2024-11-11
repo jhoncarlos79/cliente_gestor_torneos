@@ -1,9 +1,10 @@
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createInscripcione, updateInscripcione, deleteInscripcione, getInscripcione } from '../api/inscripcione.api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { EquipoCombo } from "../components/equipoCombo";
+import { TorneoCombo } from "../components/torneoCombo"
 
 export function InscripcioneForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -60,7 +61,8 @@ export function InscripcioneForm(){
                 <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
                 {/*<input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>*/}
                 {errors.id_equipo && <span>El id del equipo es requerido</span>}
-                <input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>
+                <TorneoCombo register={register} setValue={setValue}/>
+                {/*<input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>*/}
                 {errors.id_torneo && <span>El id de torneo es requerido</span>}
                 <button>Guardar</button>
             </form>

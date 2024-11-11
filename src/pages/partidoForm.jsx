@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { createPartido, updatePartido, deletePartido, getPartido } from '../api/partido.api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { EquipoCombo } from "../components/equipoCombo";
+import { TorneoCombo } from "../components/torneoCombo"
 
 export function PartidoForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -69,7 +70,8 @@ export function PartidoForm(){
                 {errors.hora && <span>La hora es requerida</span>}
                 <input type="text" placeholder='lugar' {...register("lugar", {required: true})}/>
                 {errors.lugar && <span>El lugar es requerido</span>}
-                <input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>
+                <TorneoCombo register={register} setValue={setValue}/>
+                {/*<input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>*/}
                 {errors.id_torneo && <span>El id de torneo es requerido</span>}
                 <EquipoCombo register={register} setValue={setValue} campo="id_equipo1"/>
                 {/*<input type="number" placeholder='id_equipo1' {...register("id_equipo1", {required: true})}/>*/}
