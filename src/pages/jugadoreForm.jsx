@@ -3,6 +3,7 @@ import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createJugadore, updateJugadore, deleteJugadore, getJugadore } from '../api/jugadore.api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import { EquipoCombo } from "../components/equipoCombo";
 
 export function JugadoreForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -68,7 +69,8 @@ export function JugadoreForm(){
                 {errors.estatura && <span>La estatura es requerido</span>}
                 <input type="number" placeholder='peso' {...register("peso", {required: true})}/>
                 {errors.peso && <span>El peso es requerido</span>}
-                <input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>
+                <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
+                {/*<input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>*/}
                 {errors.id_equipo && <span>El ide de equipo es requerido</span>}
                 <input type="datetime-local" placeholder='fecha_vinculacion' {...register("fecha_vinculacion", {required: true})}/>
                 {errors.fecha_vinculacion && <span>La fecha de de vinculacion es requerido</span>}

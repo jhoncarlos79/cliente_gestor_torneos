@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllJugadore } from "../api/jugadore.api"
 import { useNavigate } from "react-router-dom";
+import { EquipoValue } from "./equipoValue";
 import Table from 'react-bootstrap/Table';
 
 export function JugadoreList(){
@@ -43,7 +44,7 @@ export function JugadoreList(){
                         <td>{jugadore.fecha_nacimiento}</td>
                         <td>{jugadore.estatura}</td>
                         <td>{jugadore.peso}</td>
-                        <td>{jugadore.id_equipo}</td>
+                        <td><EquipoValue id={jugadore.id_equipo}/></td>
                         <td>{jugadore.fecha_vinculacion}</td> 
                     </tr>
                     )

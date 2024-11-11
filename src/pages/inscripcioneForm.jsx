@@ -3,6 +3,7 @@ import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createInscripcione, updateInscripcione, deleteInscripcione, getInscripcione } from '../api/inscripcione.api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import { EquipoCombo } from "../components/equipoCombo";
 
 export function InscripcioneForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -56,7 +57,8 @@ export function InscripcioneForm(){
     return (        
         <div>
             <form on onSubmit={onSubmit}>
-                <input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>
+                <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
+                {/*<input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>*/}
                 {errors.id_equipo && <span>El id del equipo es requerido</span>}
                 <input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>
                 {errors.id_torneo && <span>El id de torneo es requerido</span>}

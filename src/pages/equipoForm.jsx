@@ -3,6 +3,7 @@ import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createEquipo, updateEquipo, deleteEquipo, getEquipo } from '../api/equipo.api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import { DeporteCombo } from '../components/deporteCombo';
 
 export function EquipoForm(){
        
@@ -60,7 +61,8 @@ export function EquipoForm(){
                 {errors.nombre && <span>El nombre del equipo es requerido</span>}
                 <input type="number" placeholder='id_usuario' {...register("id_usuario", {required: true})}/>
                 {errors.id_usuario && <span>El id de usuario es requerido</span>}
-                <input type="number" placeholder='id_deporte' {...register("id_deporte", {required: true})}/>
+                <DeporteCombo register={register} setValue={setValue}/> 
+                {/*<input type="number" placeholder='id_deporte' {...register("id_deporte", {required: true})}/>*/}
                 {errors.id_deporte && <span>El id de deporte es requerido</span>}
                 <button>Guardar</button>
             </form>

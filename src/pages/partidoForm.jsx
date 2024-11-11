@@ -3,6 +3,7 @@ import { useNavigate, useParams } from  'react-router-dom'
 import { useEffect } from 'react';
 import { createPartido, updatePartido, deletePartido, getPartido } from '../api/partido.api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import { EquipoCombo } from "../components/equipoCombo";
 
 export function PartidoForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -70,9 +71,11 @@ export function PartidoForm(){
                 {errors.lugar && <span>El lugar es requerido</span>}
                 <input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>
                 {errors.id_torneo && <span>El id de torneo es requerido</span>}
-                <input type="number" placeholder='id_equipo1' {...register("id_equipo1", {required: true})}/>
+                <EquipoCombo register={register} setValue={setValue} campo="id_equipo1"/>
+                {/*<input type="number" placeholder='id_equipo1' {...register("id_equipo1", {required: true})}/>*/}
                 {errors.id_equipo1 && <span>El id de equipo1 es requerido</span>}
-                <input type="number" placeholder='id_equipo2' {...register("id_equipo2", {required: true})}/>
+                <EquipoCombo register={register} setValue={setValue} campo="id_equipo2"/>
+                {/*<input type="number" placeholder='id_equipo2' {...register("id_equipo2", {required: true})}/>*/}
                 {errors.id_equipo2 && <span>El id de equipo2 es requerido</span>}
                 <input type="number" placeholder='resultado_equipo1' {...register("resultado_equipo1", {required: true})}/>
                 {errors.resultado_equipo1 && <span>El resultado del equipo1 es requerido</span>}
