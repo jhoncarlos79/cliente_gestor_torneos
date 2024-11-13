@@ -14,25 +14,14 @@ export function EquipoForm(){
     const navigate = useNavigate();
     const param = useParams();
 
-    // Obtenemos el token jwt
-    const token = localStorage.getItem(ACCESS_TOKEN);
-
-    console.log(token);
-
-    const authHeaders={
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    };
-    
     //console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){
-            const res=await updateEquipo(param.id, data, authHeaders);  // Actualizar un Equipo
+            const res=await updateEquipo(param.id, data);  // Actualizar un Equipo
         }else{
-            const res=await createEquipo(data, authHeaders);  // Crear un Equipo
+            const res=await createEquipo(data);  // Crear un Equipo
         }        
         navigate("/equipos")
     })
@@ -71,7 +60,7 @@ export function EquipoForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el equipo?");
                     if (accepted){
-                        await deleteEquipo(param.id, authHeaders);  // Eliminar un equipo
+                        await deleteEquipo(param.id);  // Eliminar un equipo
                         navigate("/equipos")
                     }
                 }}>Borrar</button>)}

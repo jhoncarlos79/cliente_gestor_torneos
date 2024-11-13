@@ -7,15 +7,18 @@ const equiposApi = axios.create({
 
 // Anadir token a la peticiones
 
-equiposApi.interceptors.request.use(config=>{
-    const token = localStorage.getItem(ACCESS_TOKEN);
-    if (token && config.method !== 'GET') {
-        config.headers['Authorization']=`Bearer ${token}`;
+equiposApi.interceptors.request.use(
+    (config)=>{
+        const token = localStorage.getItem(ACCESS_TOKEN);
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },    
+    (error)=>{
+        return Promise.reject(error);
     }
-    return config;
-}, error=>{
-    return Promise.reject(error);
-});
+)
 
 export const getAllEquipo = () => equiposApi.get('/') // Aqui coloco la ruta del backend que vamos a usar
 

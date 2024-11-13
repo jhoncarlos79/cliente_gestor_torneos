@@ -5,15 +5,18 @@ const partidosApi = axios.create({
     baseURL: 'http://127.0.0.1:8000/apipartidos/'
 })
 
-partidosApi.interceptors.request.use(config=>{
-    const token = localStorage.getItem(ACCESS_TOKEN);
-    if (token && config.method !== 'GET') {
-        config.headers['Authorization']=`Bearer ${token}`;
+partidosApi.interceptors.request.use(
+    (config)=>{
+        const token = localStorage.getItem(ACCESS_TOKEN);
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },    
+    (error)=>{
+        return Promise.reject(error);
     }
-    return config;
-}, error=>{
-    return Promise.reject(error);
-});
+)
 
 export const getAllPartido = () => partidosApi.get('/')// Aqui coloco la ruta del backend que vamos a usar
 
