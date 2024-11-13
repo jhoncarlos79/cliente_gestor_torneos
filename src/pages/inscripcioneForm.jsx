@@ -57,6 +57,7 @@ export function InscripcioneForm(){
     
     return (        
         <div>
+            <h1>FORMULARIO INSCRIPCION</h1>
             <form on onSubmit={onSubmit}>
                 <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
                 {/*<input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>*/}

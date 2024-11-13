@@ -56,6 +56,7 @@ export function EquipoForm(){
     
     return (        
         <div>
+            <h1>FORMULARIO EQUIPOS</h1>
             <form on onSubmit={onSubmit}>
                 <input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
                 {errors.nombre && <span>El nombre del equipo es requerido</span>}

@@ -58,6 +58,7 @@ export function TorneoForm(){
     
     return (        
         <div>
+            <h1>FORMULARIO TORNEOS</h1>
             <form on onSubmit={onSubmit}>
                 <input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
                 {errors.nombre && <span>El nombre del deporte es requerido</span>}

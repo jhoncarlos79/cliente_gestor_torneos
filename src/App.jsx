@@ -48,22 +48,22 @@ function App() {
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/register" element={<RegisterAndLogout/>}/>
         {/*<Route path="/" element={<Navigate to="/deportes"/>}></Route>*/}
-        <Route path="/deportes" element={<DeportePagina/>}></Route>
+        <Route path="/deportes" element={<ProtectedRoute><DeportePagina/></ProtectedRoute>}></Route>
         <Route path="/deportes-add" element={<ProtectedRoute><DeporteForm/></ProtectedRoute>}></Route>
         <Route path="/deportes-add/:id" element={<ProtectedRoute><DeporteForm/></ProtectedRoute>}></Route>
-        <Route path="/torneos" element={<TorneoPagina/>}></Route>
+        <Route path="/torneos" element={<ProtectedRoute><TorneoPagina/></ProtectedRoute>}></Route>
         <Route path="/torneos-add" element={<ProtectedRoute><TorneoForm/></ProtectedRoute>}></Route>
         <Route path="/torneos-add/:id" element={<ProtectedRoute><TorneoForm/></ProtectedRoute>}></Route>
-        <Route path="/equipos" element={<EquipoPagina/>}></Route>
+        <Route path="/equipos" element={<ProtectedRoute><EquipoPagina/></ProtectedRoute>}></Route>
         <Route path="/equipos-add" element={<ProtectedRoute><EquipoForm/></ProtectedRoute>}></Route>
         <Route path="/equipos-add/:id" element={<ProtectedRoute><EquipoForm/></ProtectedRoute>}></Route>
-        <Route path="/inscripciones" element={<InscripcionePagina/>}></Route>
+        <Route path="/inscripciones" element={<ProtectedRoute><InscripcionePagina/></ProtectedRoute>}></Route>
         <Route path="/inscripciones-add" element={<ProtectedRoute><InscripcioneForm/></ProtectedRoute>}></Route>
         <Route path="/inscripciones-add/:id" element={<ProtectedRoute><InscripcioneForm/></ProtectedRoute>}></Route>
-        <Route path="/jugadores" element={<JugadorePagina/>}></Route>
+        <Route path="/jugadores" element={<ProtectedRoute><JugadorePagina/></ProtectedRoute>}></Route>
         <Route path="/jugadores-add" element={<ProtectedRoute><JugadoreForm/></ProtectedRoute>}></Route>
         <Route path="/jugadores-add/:id" element={<ProtectedRoute><JugadoreForm/></ProtectedRoute>}></Route>
-        <Route path="/partidos" element={<PartidoPagina/>}></Route>
+        <Route path="/partidos" element={<ProtectedRoute><PartidoPagina/></ProtectedRoute>}></Route>
         <Route path="/partidos-add" element={<ProtectedRoute><PartidoForm/></ProtectedRoute>}></Route>
         <Route path="/partidos-add/:id" element={<ProtectedRoute><PartidoForm/></ProtectedRoute>}></Route>
       </Routes>

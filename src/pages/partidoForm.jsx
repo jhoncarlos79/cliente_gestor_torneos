@@ -63,6 +63,7 @@ export function PartidoForm(){
     
     return (        
         <div>
+            <h1>FORMULARIO PARTIDOS</h1>
             <form on onSubmit={onSubmit}>
                 <input type="date" placeholder='fecha' {...register("fecha", {required: true})}/>
                 {errors.fecha && <span>El fecha es requerida</span>}
