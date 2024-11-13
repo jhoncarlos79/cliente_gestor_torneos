@@ -13,25 +13,15 @@ export function DeporteForm(){
     const navigate = useNavigate();
     const param = useParams();
 
-    // Obtenemos el token jwt
-    const token = localStorage.getItem(ACCESS_TOKEN);
-
-    console.log(token);
-
-    const authHeaders={
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    };
     //console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             //console.log("Modificando...");
-            const res=await updateDeporte(param.id, data, authHeaders);  // Actualizar un deporte
+            const res=await updateDeporte(param.id, data);  // Actualizar un deporte
         }else{
-            const res=await createDeporte(data, authHeaders);  // Crear un deporte
+            const res=await createDeporte(data);  // Crear un deporte
             console.log(res);
         }        
         navigate("/deportes")
@@ -55,6 +45,7 @@ export function DeporteForm(){
     
     return (        
         <div>
+            <h1>FORMULARIO DEPORTES</h1>
             <form on onSubmit={onSubmit}>
                 <input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
                 {errors.nombre && <span>El nombre del deporte es requerido</span>}
@@ -66,7 +57,7 @@ export function DeporteForm(){
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el deporte?");
                     if (accepted){
-                        await deleteDeporte(param.id, authHeaders);  // Eliminar un deporte
+                        await deleteDeporte(param.id);  // Eliminar un deporte
                         navigate("/deportes")
                     }
                 }}>Borrar</button>)}

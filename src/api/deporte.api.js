@@ -6,7 +6,7 @@ const deportesApi = axios.create({
 })
 
 // Anadir token a la peticiones
-
+/*
 deportesApi.interceptors.request.use(config=>{
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (token && config.method !== 'GET') {
@@ -16,7 +16,20 @@ deportesApi.interceptors.request.use(config=>{
 }, error=>{
     return Promise.reject(error);
 });
+*/
 
+deportesApi.interceptors.request.use(
+    (config)=>{
+        const token = localStorage.getItem(ACCESS_TOKEN);
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },    
+    (error)=>{
+        return Promise.reject(error);
+    }
+)
 
 // Al añadir la constante ya no es necesario el return por que se puede hacer una sola linea
 
