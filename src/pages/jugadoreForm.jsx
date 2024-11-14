@@ -81,7 +81,13 @@ export function JugadoreForm(){
                         {errors.peso && "El peso del jugador es requerido"}
                     </Form.Text>
                 </Form.Group>
-                <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Equipo</Form.Label>
+                    <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
+                    <Form.Text className="text-muted">
+                        {errors.id_equipo && "El equipo es requerido"}
+                    </Form.Text>
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Fecha de vinculacion</Form.Label>
                     <Form.Control type="date" placeholder='fecha_vinculacion' {...register("fecha_vinculacion", {required: true})}/>

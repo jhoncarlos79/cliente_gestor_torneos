@@ -61,14 +61,14 @@ export function PartidoForm(){
                     <Form.Label>Fecha</Form.Label>
                     <Form.Control type="date" placeholder='fecha' {...register("fecha", {required: true})}/>
                     <Form.Text className="text-muted">
-                        {errors.fecha && "La fecha es requerida"}
+                        {errors.fecha && "La fecha del partido es requerida"}
                     </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Hora</Form.Label>
                     <Form.Control type="time" placeholder='hora' {...register("hora", {required: true})}/>
                     <Form.Text className="text-muted">
-                        {errors.hora && "La fecha de nacimiento es requerida"}
+                        {errors.hora && "La hora del partido es requerida"}
                     </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -78,9 +78,27 @@ export function PartidoForm(){
                         {errors.lugar && "El lugar es requerido"}
                     </Form.Text>
                 </Form.Group>
-                <TorneoCombo register={register} setValue={setValue}/>
-                <EquipoCombo register={register} setValue={setValue} campo="id_equipo1"/>
-                <EquipoCombo register={register} setValue={setValue} campo="id_equipo2"/>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Torneo</Form.Label>
+                    <TorneoCombo register={register} setValue={setValue}/>
+                    <Form.Text className="text-muted">
+                        {errors.id_torneo && "El torneo es requerido"}
+                    </Form.Text>
+                </Form.Group>  
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Equipo1</Form.Label>
+                    <EquipoCombo register={register} setValue={setValue} campo="id_equipo1"/>
+                    <Form.Text className="text-muted">
+                        {errors.id_equipo1 && "El equipo1 es requerido"}
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Equipo2</Form.Label>
+                    <EquipoCombo register={register} setValue={setValue} campo="id_equipo2"/>
+                    <Form.Text className="text-muted">
+                        {errors.id_equipo2 && "El equipo2 es requerido"}
+                    </Form.Text>
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Resultado Equipo1</Form.Label>
                     <Form.Control type="number" placeholder='resultado_equipo1' {...register("resultado_equipo1", {required: true})}/>

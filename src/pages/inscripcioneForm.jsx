@@ -50,8 +50,20 @@ export function InscripcioneForm(){
         <div>
             <h1>FORMULARIO INSCRIPCION</h1>
             <form on onSubmit={onSubmit}>
-                <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
-                <TorneoCombo register={register} setValue={setValue}/>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Equipo</Form.Label>
+                    <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
+                    <Form.Text className="text-muted">
+                        {errors.id_equipo && "El equipo es requerido"}
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Torneo</Form.Label>
+                    <TorneoCombo register={register} setValue={setValue}/>
+                    <Form.Text className="text-muted">
+                        {errors.id_torneo && "El torneo es requerido"}
+                    </Form.Text>
+                </Form.Group>  
                 <Button variant="primary" type="submit">
                     Guardar
                 </Button><br />

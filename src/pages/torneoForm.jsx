@@ -72,7 +72,13 @@ export function TorneoForm(){
                         {errors.fecha_fin && "La fecha de fin es requerida"}
                     </Form.Text>
                 </Form.Group>
-                <DeporteCombo register={register} setValue={setValue}/>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Deporte</Form.Label>
+                    <DeporteCombo register={register} setValue={setValue}/>
+                    <Form.Text className="text-muted">
+                        {errors.id_deporte && "El deporte del equipo es requerido"}
+                    </Form.Text>
+                </Form.Group>
                 <Button variant="primary" type="submit">
                     Guardar
                 </Button><br />
