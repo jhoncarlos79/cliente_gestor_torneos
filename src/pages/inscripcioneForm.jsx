@@ -5,6 +5,8 @@ import { createInscripcione, updateInscripcione, deleteInscripcione, getInscripc
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { EquipoCombo } from "../components/equipoCombo";
 import { TorneoCombo } from "../components/torneoCombo"
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export function InscripcioneForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -49,21 +51,34 @@ export function InscripcioneForm(){
             <h1>FORMULARIO INSCRIPCION</h1>
             <form on onSubmit={onSubmit}>
                 <EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
-                {/*<input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>*/}
+                <TorneoCombo register={register} setValue={setValue}/>
+                <Button variant="primary" type="submit">
+                    Guardar
+                </Button><br />
+                {/*<EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
+                {<input type="number" placeholder='id_equipo' {...register("id_equipo", {required: true})}/>}
                 {errors.id_equipo && <span>El id del equipo es requerido</span>}
                 <TorneoCombo register={register} setValue={setValue}/>
-                {/*<input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>*/}
+                {<input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>}
                 {errors.id_torneo && <span>El id de torneo es requerido</span>}
-                <button>Guardar</button>
+                <button>Guardar</button>*/}
             </form>
             {param.id && (
+                <Button variant="primary" onClick={async() => {
+                    const accepted = window.confirm("¿Desea Eliminar la inscripcion?");
+                    if (accepted){
+                        await deleteInscripcione(param.id);  // Eliminar una Inscripcion
+                        navigate("/inscripciones")
+                    }
+                }}>Borrar</Button>)}
+            {/*param.id && (
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar la inscripcion?");
                     if (accepted){
                         await deleteInscripcione(param.id);  // Eliminar una Inscripcion
                         navigate("/inscripciones")
                     }
-                }}>Borrar</button>)}
+                }}>Borrar</button>)*/}
         </div>
     )
 }

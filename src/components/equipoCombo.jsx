@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { getAllEquipo } from "../api/equipo.api"
+import Form from 'react-bootstrap/Form';
 
 export function EquipoCombo({ register, setValue, campo }){
     const [equipos, setEquipos] = useState([]);
@@ -17,11 +18,17 @@ export function EquipoCombo({ register, setValue, campo }){
     },[]);
     
     return (
-        <select {...register(campo, { required: true })} onChange={(e) => setValue(campo, e.target.value)}>
+        <Form.Select aria-label="Default select example" {...register(campo, { required: true })} onChange={(e) => setValue(campo, e.target.value)}>
             <option value="">Seleccione un equipo</option>
             {equipos.map(equipo => (
                 <option key={equipo.id_equipo} value={equipo.id_equipo}>{equipo.nombre}</option>
             ))}
-        </select>
+        </Form.Select>
     );
+    {/*<select {...register(campo, { required: true })} onChange={(e) => setValue(campo, e.target.value)}>
+            <option value="">Seleccione un equipo</option>
+            {equipos.map(equipo => (
+                <option key={equipo.id_equipo} value={equipo.id_equipo}>{equipo.nombre}</option>
+            ))}
+        </select>*/}
 }

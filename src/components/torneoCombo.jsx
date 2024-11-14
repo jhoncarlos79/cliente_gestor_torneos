@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { getAllTorneo } from "../api/torneo.api"
+import Form from 'react-bootstrap/Form';
 
 export function TorneoCombo({ register, setValue }){
     const [torneos, setTorneos] = useState([]);
@@ -17,11 +18,17 @@ export function TorneoCombo({ register, setValue }){
     },[]);
     
     return (
-        <select {...register("id_torneo", { required: true })} onChange={(e) => setValue("id_torneo", e.target.value)}>
+        <Form.Select aria-label="Default select example" {...register("id_torneo", { required: true })} onChange={(e) => setValue("id_torneo", e.target.value)}>
             <option value="">Seleccione un torneo</option>
             {torneos.map(torneo => (
                 <option key={torneo.id_torneo} value={torneo.id_torneo}>{torneo.nombre}</option>
             ))}
-        </select>
+        </Form.Select>
     );
+    {/*<select {...register("id_torneo", { required: true })} onChange={(e) => setValue("id_torneo", e.target.value)}>
+            <option value="">Seleccione un torneo</option>
+            {torneos.map(torneo => (
+                <option key={torneo.id_torneo} value={torneo.id_torneo}>{torneo.nombre}</option>
+            ))}
+        </select>*/}
 }
