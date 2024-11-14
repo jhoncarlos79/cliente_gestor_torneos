@@ -15,16 +15,16 @@ export function TorneoForm(){
     const navigate = useNavigate();
     const param = useParams();
 
-    console.log(param);
+    //console.log(param);
     
     const onSubmit = handleSubmit(async data => {
-        console.log(data);
+        //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
-            console.log("Modificando...");
+            //console.log("Modificando...");
             const res=await updateTorneo(param.id, data);  // Actualizar un torneo
         }else{
             const res=await createTorneo(data);  // Crear un torneo
-            console.log(res);
+            //console.log(res);
         }        
         navigate("/torneos")
     })

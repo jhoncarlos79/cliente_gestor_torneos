@@ -16,16 +16,16 @@ export function InscripcioneForm(){
     const navigate = useNavigate();
     const param = useParams();
 
-    console.log(param);
+    //console.log(param);
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
-            console.log("Modificando...");
+            //console.log("Modificando...");
             const res=await updateInscripcione(param.id, data);  // Actualizar un inscripcione
         }else{
             const res=await createInscripcione(data);  // Crear un inscripcione
-            console.log(res);
+            //console.log(res);
         }        
         navigate("/inscripciones")
     })
