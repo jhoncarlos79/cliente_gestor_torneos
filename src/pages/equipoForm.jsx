@@ -6,6 +6,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { DeporteCombo } from '../components/deporteCombo';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 
 export function EquipoForm(){
        
@@ -22,8 +23,22 @@ export function EquipoForm(){
         //console.log(data);
         if( param.id ){
             const res=await updateEquipo(param.id, data);  // Actualizar un Equipo
+            toast.success('Equipo Modificado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
         }else{
             const res=await createEquipo(data);  // Crear un Equipo
+            toast.success('Equipo Creado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
         }        
         navigate("/equipos")
     })
@@ -88,6 +103,13 @@ export function EquipoForm(){
                     const accepted = window.confirm("¿Desea Eliminar el equipo?");
                     if (accepted){
                         await deleteEquipo(param.id);  // Eliminar un equipo
+                        toast.success('Equipo Eliminado', {
+                            position: "bottom-right",
+                            style: {
+                                background: "#101010",
+                                color: "#fff"
+                            }
+                        });
                         navigate("/equipos")
                     }
                 }}>Borrar</Button>)}

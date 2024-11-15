@@ -7,6 +7,7 @@ import { EquipoCombo } from "../components/equipoCombo";
 import { TorneoCombo } from "../components/torneoCombo"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 
 export function InscripcioneForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -23,8 +24,22 @@ export function InscripcioneForm(){
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             //console.log("Modificando...");
             const res=await updateInscripcione(param.id, data);  // Actualizar un inscripcione
+            toast.success('Inscripcion Modificado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
         }else{
             const res=await createInscripcione(data);  // Crear un inscripcione
+            toast.success('Inscripcion Creado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
             //console.log(res);
         }        
         navigate("/inscripciones")
@@ -80,6 +95,13 @@ export function InscripcioneForm(){
                     const accepted = window.confirm("¿Desea Eliminar la inscripcion?");
                     if (accepted){
                         await deleteInscripcione(param.id);  // Eliminar una Inscripcion
+                        toast.success('Inscripcion Eliminado', {
+                            position: "bottom-right",
+                            style: {
+                                background: "#101010",
+                                color: "#fff"
+                            }
+                        });
                         navigate("/inscripciones")
                     }
                 }}>Borrar</Button>)}

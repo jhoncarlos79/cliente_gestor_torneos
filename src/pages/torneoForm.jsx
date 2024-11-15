@@ -6,6 +6,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { DeporteCombo } from '../components/deporteCombo';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 
 export function TorneoForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -22,8 +23,23 @@ export function TorneoForm(){
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             //console.log("Modificando...");
             const res=await updateTorneo(param.id, data);  // Actualizar un torneo
+            toast.success('Torneo Modificado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
+
         }else{
             const res=await createTorneo(data);  // Crear un torneo
+            toast.success('Torneo Creado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
             //console.log(res);
         }        
         navigate("/torneos")
@@ -98,6 +114,13 @@ export function TorneoForm(){
                     const accepted = window.confirm("¿Desea Eliminar el torneo?");
                     if (accepted){
                         await deleteTorneo(param.id);  // Eliminar un torneo
+                        toast.success('Torneo Eliminado', {
+                            position: "bottom-right",
+                            style: {
+                                background: "#101010",
+                                color: "#fff"
+                            }
+                        });
                         navigate("/torneos")
                     }
                 }}>Borrar</Button>)}

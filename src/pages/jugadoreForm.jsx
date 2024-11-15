@@ -6,6 +6,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { EquipoCombo } from "../components/equipoCombo";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 
 export function JugadoreForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -22,8 +23,22 @@ export function JugadoreForm(){
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             //console.log("Modificando...");
             const res=await updateJugadore(param.id, data);  // Actualizar un jugadore
+            toast.success('Jugador Modificado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
         }else{
             const res=await createJugadore(data);  // Crear un jugadore
+            toast.success('Jugador Creado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
             //console.log(res);
         }        
         navigate("/jugadores")
@@ -118,6 +133,13 @@ export function JugadoreForm(){
                     const accepted = window.confirm("¿Desea Eliminar el jugador?");
                     if (accepted){
                         await deleteJugadore(param.id);  // Eliminar un jugadore
+                        toast.success('Jugador Eliminado', {
+                            position: "bottom-right",
+                            style: {
+                                background: "#101010",
+                                color: "#fff"
+                            }
+                        });
                         navigate("/jugadores")
                     }
                 }}>Borrar</Button>)}

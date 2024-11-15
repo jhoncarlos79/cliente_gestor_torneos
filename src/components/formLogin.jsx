@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 
 export function FormLogin({route, method}){
     const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ export function FormLogin({route, method}){
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const name = method === "login" ? "login" : "register"
+    const name = method === "login" ? "login" : "register";
 
     const handleSubmit = async (e) => {
         setLoading(true)
@@ -21,16 +22,23 @@ export function FormLogin({route, method}){
             const res = await tokenApi.post(route, {email, password});
             console.log(res);
             if (method === "login"){
-                localStorage.setItem(ACCESS_TOKEN, res.data.access)
-                localStorage.setItem(REFRESH_TOKEN, res.data.refresh)
+                localStorage.setItem(ACCESS_TOKEN, res.data.access);
+                localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                toast.success('Usuario Autenticado', {
+                    position: "bottom-right",
+                    style: {
+                        background: "#101010",
+                        color: "#fff"
+                    }
+                });
                 navigate("/");
-            } else {
+            } else {                
                 navigate("/login");
             }
         } catch (error) {
             alert(error);
         } finally{
-            setLoading(false)
+            setLoading(false);
         }
     };
 

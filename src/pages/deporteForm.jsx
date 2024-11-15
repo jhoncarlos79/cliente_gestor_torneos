@@ -5,6 +5,7 @@ import { createDeporte, updateDeporte, deleteDeporte, getDeporte } from '../api/
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 
 export function DeporteForm(){
     
@@ -22,9 +23,23 @@ export function DeporteForm(){
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             //console.log("Modificando...");
             const res=await updateDeporte(param.id, data);  // Actualizar un deporte
+            toast.success('Libro Modificado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
         }else{
             const res=await createDeporte(data);  // Crear un deporte
             //console.log(res);
+            toast.success('Libro Creado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
         }        
         navigate("/deportes")
     })
@@ -34,7 +49,7 @@ export function DeporteForm(){
     useEffect(() => {
         async function loadDeporte() {
             if (param.id) {
-                const res = await getDeporte(param.id);
+                const res = await getDeporte(param.id);                
                 const deporte = res.data;
                 //console.log(res);
                 // Coloca los valores en el formulario
@@ -77,6 +92,13 @@ export function DeporteForm(){
                     const accepted = window.confirm("¿Desea Eliminar el deporte?");
                     if (accepted){
                         await deleteDeporte(param.id);  // Eliminar un deporte
+                        toast.success('Libro Eliminado', {
+                            position: "bottom-right",
+                            style: {
+                                background: "#101010",
+                                color: "#fff"
+                            }
+                        });
                         navigate("/deportes")
                     }
                 }}>Borrar</Button>)}

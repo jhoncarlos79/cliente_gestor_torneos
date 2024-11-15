@@ -7,6 +7,7 @@ import { EquipoCombo } from "../components/equipoCombo";
 import { TorneoCombo } from "../components/torneoCombo"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 
 export function PartidoForm(){
     const {register, handleSubmit, setValue, formState:{
@@ -23,8 +24,22 @@ export function PartidoForm(){
         if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
             //console.log("Modificando...");
             const res=await updatePartido(param.id, data);  // Actualizar un partido
+            toast.success('Partido Modificado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
         }else{
             const res=await createPartido(data);  // Crear un partido
+            toast.success('Partido Creado', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
             //console.log(res);
         }        
         navigate("/partidos")
@@ -142,6 +157,13 @@ export function PartidoForm(){
                     const accepted = window.confirm("¿Desea Eliminar el partido?");
                     if (accepted){
                         await deletePartido(param.id);  // Eliminar un partido
+                        toast.success('Partido Eliminado', {
+                            position: "bottom-right",
+                            style: {
+                                background: "#101010",
+                                color: "#fff"
+                            }
+                        });
                         navigate("/partidos")
                     }
                 }}>Borrar</Button>)}

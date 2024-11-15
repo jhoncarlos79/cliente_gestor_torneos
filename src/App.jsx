@@ -27,6 +27,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Importamos componentes
 
 import { Navigation } from "./components/navigation"
+import { Toaster } from "react-hot-toast"
 
 function Logout(){
   localStorage.clear();
@@ -67,6 +68,7 @@ function App() {
         <Route path="/partidos-add" element={<ProtectedRoute><PartidoForm/></ProtectedRoute>}></Route>
         <Route path="/partidos-add/:id" element={<ProtectedRoute><PartidoForm/></ProtectedRoute>}></Route>
       </Routes>
+      <Toaster/>
     </BrowserRouter>
   )
 }
