@@ -63,7 +63,8 @@ export function InscripcioneForm(){
     
     return (        
         <div>
-            <h1>FORMULARIO INSCRIPCION</h1>
+            <h1 className="text-center pb-4">FORMULARIO INSCRIPCION</h1>
+            <div className="d-flex justify-content-center" style={{ height: "50vh" }}>
             <form on onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Equipo</Form.Label>
@@ -79,7 +80,7 @@ export function InscripcioneForm(){
                         {errors.id_torneo && "El torneo es requerido"}
                     </Form.Text>
                 </Form.Group>  
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Guardar
                 </Button><br />
                 {/*<EquipoCombo register={register} setValue={setValue} campo="id_equipo"/>
@@ -89,9 +90,8 @@ export function InscripcioneForm(){
                 {<input type="number" placeholder='id_torneo' {...register("id_torneo", {required: true})}/>}
                 {errors.id_torneo && <span>El id de torneo es requerido</span>}
                 <button>Guardar</button>*/}
-            </form>
             {param.id && (
-                <Button variant="primary" onClick={async() => {
+                <Button className="mt-2" variant="danger" onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar la inscripcion?");
                     if (accepted){
                         await deleteInscripcione(param.id);  // Eliminar una Inscripcion
@@ -105,6 +105,8 @@ export function InscripcioneForm(){
                         navigate("/inscripciones")
                     }
                 }}>Borrar</Button>)}
+            </form>
+            </div>
             {/*param.id && (
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar la inscripcion?");

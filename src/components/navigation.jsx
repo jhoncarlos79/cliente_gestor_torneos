@@ -1,24 +1,32 @@
-import { Link } from 'react-router-dom';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Nav from "react-bootstrap/Nav";
 
-export function Navigation(){
-    return(
-        <div>
-            <ListGroup horizontal>
-                <ListGroup.Item><Link to="/deportes">Aplicacion de Deportes</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/deportes-add">Agregar Nuevo Deporte</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/torneos">Aplicacion de Torneos</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/torneos-add">Agregar Nuevo Torneo</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/equipos">Aplicacion de Equipos</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/equipos-add">Agregar Nuevo Equipo</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/inscripciones">Aplicacion de Inscripcion</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/inscripciones-add">Agregar Nuevo Inscripcion</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/jugadores">Aplicacion de Jugador</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/jugadores-add">Agregar Nuevo Jugador</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/partidos">Aplicacion de Partidos</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/partidos-add">Agregar Nuevo Partido</Link></ListGroup.Item>
-                <ListGroup.Item><Link to="/logout">Cerrar Session</Link></ListGroup.Item>
-            </ListGroup>
-        </div>
-    )
+export function Navigation() {
+  return (
+    <Nav variant="pills" defaultActiveKey="/" className="justify-content-center pt-4 pb-3">
+      <Nav.Item>
+        <Nav.Link href="/">Home</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-0" href="/torneos">Torneos</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-2" href="/deportes">Deportes</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-3" href="/equipos">Equipos</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-4" href="/jugadores">Jugadores</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-5" href="/partidos">Encuentros</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-6" href="/inscripciones">Inscripciones</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-7" href="/logout">Cerrar sesión</Nav.Link>
+      </Nav.Item>
+    </Nav>
+  );
 }

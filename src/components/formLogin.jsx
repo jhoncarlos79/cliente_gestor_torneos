@@ -43,7 +43,7 @@ export function FormLogin({route, method}){
     };
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
             <form onSubmit={handleSubmit}>
                 <h1>{name}</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

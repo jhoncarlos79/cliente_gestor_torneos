@@ -62,23 +62,24 @@ export function DeporteForm(){
     
     return (        
         <div>
-            <h1>FORMULARIO DEPORTES</h1>
+            <h1 className="text-center pb-4">FORMULARIO DEPORTES</h1>
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
             <form on onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
+                    <Form.Control type="text" placeholder='nombre del deporte' {...register("nombre", {required: true})}/>
                     <Form.Text className="text-muted">
                         {errors.nombre && "El nombre del deporte es requerido"}
                     </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Numero de jugadores</Form.Label>
-                    <Form.Control type="number" placeholder='num_jugadores' {...register("num_jugadores", {required: true})}/>
+                    <Form.Control type="number" placeholder='cantidad de jugadores' {...register("num_jugadores", {required: true})}/>
                     <Form.Text className="text-muted">
                         {errors.num_jugadores && "El numero de jugadores es requerido"}
                     </Form.Text>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Guardar
                 </Button><br />    
                 {/*<input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
@@ -86,13 +87,12 @@ export function DeporteForm(){
                 <input type="number" placeholder='num_jugadores' {...register("num_jugadores", {required: true})}/>
                 {errors.num_jugadores && <span>El numero de jugadores es requerido</span>}
                 <button>Guardar</button>*/}
-            </form>
             {param.id && (
-                <Button variant="primary" onClick={async() => {
+                <Button className="mt-2" variant="danger" onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el deporte?");
                     if (accepted){
                         await deleteDeporte(param.id);  // Eliminar un deporte
-                        toast.success('Libro Eliminado', {
+                        toast.success('Deporte Eliminado', {
                             position: "bottom-right",
                             style: {
                                 background: "#101010",
@@ -101,7 +101,9 @@ export function DeporteForm(){
                         });
                         navigate("/deportes")
                     }
-                }}>Borrar</Button>)}
+                }}>Eliminar</Button>)}
+            </form>
+            </div>
             {/*{param.id && (
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el deporte?");

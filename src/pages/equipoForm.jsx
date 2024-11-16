@@ -62,7 +62,8 @@ export function EquipoForm(){
     
     return (        
         <div>
-            <h1>FORMULARIO EQUIPOS</h1>
+            <h1 className="text-center pb-4">FORMULARIO EQUIPOS</h1>
+            <div className="d-flex justify-content-center" style={{ height: "50vh" }}>
             <form on onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nombre</Form.Label>
@@ -73,7 +74,7 @@ export function EquipoForm(){
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Usuario</Form.Label>
-                    <Form.Control type="text" placeholder='id_usuario' {...register("id_usuario", {required: true})}/>
+                    <Form.Control type="number" placeholder='id_usuario' {...register("id_usuario", {required: true})}/>
                     <Form.Text className="text-muted">
                         {errors.id_usuario && "El id del usuario es requerido"}
                     </Form.Text>
@@ -86,7 +87,7 @@ export function EquipoForm(){
                     </Form.Text>
                 </Form.Group>
                     
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Guardar
                 </Button><br />
                 {/*<input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
@@ -97,9 +98,8 @@ export function EquipoForm(){
                 <input type="number" placeholder='id_deporte' {...register("id_deporte", {required: true})}/>
                 {errors.id_deporte && <span>El id de deporte es requerido</span>}
                 <button>Guardar</button>*/}
-            </form>
             {param.id && (
-                <Button variant="primary" onClick={async() => {
+                <Button className="mt-2" variant="danger" onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el equipo?");
                     if (accepted){
                         await deleteEquipo(param.id);  // Eliminar un equipo
@@ -112,7 +112,9 @@ export function EquipoForm(){
                         });
                         navigate("/equipos")
                     }
-                }}>Borrar</Button>)}
+                }}>Eliminar</Button>)}
+            </form>
+            </div>
             {/*{param.id && (
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el equipo?");

@@ -5,35 +5,35 @@ import { useState, useEffect } from 'react';
 import { tokenApi } from '../api/token.api';
 
 export function ProtectedRoute({children}){
-	const [isAutorized, setIsAutorized] = useState(null);
+	const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(()=>{
-	    auth().catch(()=>setIsAutorized(false))
+	    auth().catch(()=>setIsAuthorized(false))
     },[])
 
     const refreshToken = async ()=>{
 	
         const refreshToken = localStorage.getItem(REFRESH_TOKEN)
         try {
-            const res= await tokenApi.post("token/refresh/",{
+            const res= await tokenApi.post("login/refresh/",{
                 refresh: refreshToken,
             });
             if (res.status === 200){
                 localStorage.setItem(ACCESS_TOKEN, res.data.access)
-                setIsAutorized(true)
+                setIsAuthorized(true)
             } else {
-                setIsAutorized(false)
+                setIsAuthorized(false)
             }
         } catch (error) {
             console.log(error)
-            setIsAutorized(false)
+            setIsAuthorized(false)
         }
     }
 
     const auth = async()=>{
         const token = localStorage.getItem(ACCESS_TOKEN);
         if(!token){
-            setIsAutorized(false);
+            setIsAuthorized(false);
             return;
         }
         
@@ -44,14 +44,14 @@ export function ProtectedRoute({children}){
         if(tokenExpiration<now){
             await refreshToken()            
         } else {
-            setIsAutorized(true)
+            setIsAuthorized(true)
         }
     }
 
-    if( isAutorized === null){
+    if( isAuthorized === null){
         return <div>Cargando...</div>
     }
 
-    return isAutorized ? children: <Navigate to="/login/"/>
+    return isAuthorized ? children: <Navigate to="/login/"/>
 
 }

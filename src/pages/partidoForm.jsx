@@ -69,7 +69,8 @@ export function PartidoForm(){
     
     return (        
         <div>
-            <h1>FORMULARIO PARTIDOS</h1>
+            <h1 className="text-center pb-4">FORMULARIO PARTIDOS</h1>
+            <div className="d-flex justify-content-center" style={{ height: "50vh" }}>
             <form on onSubmit={onSubmit}>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -128,7 +129,7 @@ export function PartidoForm(){
                         {errors.resultado_equipo2 && "El resultado del equipo2 es requerido"}
                     </Form.Text>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Guardar
                 </Button><br />
                 {/*<input type="date" placeholder='fecha' {...register("fecha", {required: true})}/>
@@ -151,9 +152,8 @@ export function PartidoForm(){
                 <input type="number" placeholder='resultado_equipo2' {...register("resultado_equipo2", {required: true})}/>
                 {errors.resultado_equipo2 && <span>El resultado del equipo2 es requerido</span>}
                 <button>Guardar</button>*/}
-            </form>
             {param.id && (
-                <Button variant="primary" onClick={async() => {
+                <Button className="mt-2" variant="danger" onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el partido?");
                     if (accepted){
                         await deletePartido(param.id);  // Eliminar un partido
@@ -167,6 +167,8 @@ export function PartidoForm(){
                         navigate("/partidos")
                     }
                 }}>Borrar</Button>)}
+            </form>
+            </div>
             {/*param.id && (
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el partido?");

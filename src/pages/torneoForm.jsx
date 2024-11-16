@@ -1,104 +1,129 @@
-import { useForm } from 'react-hook-form'
-import { useNavigate, useParams } from  'react-router-dom'
-import { useEffect } from 'react';
-import { createTorneo, updateTorneo, deleteTorneo, getTorneo } from '../api/torneo.api';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
-import { DeporteCombo } from '../components/deporteCombo';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { toast } from 'react-hot-toast';
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  createTorneo,
+  updateTorneo,
+  deleteTorneo,
+  getTorneo,
+} from "../api/torneo.api";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import { DeporteCombo } from "../components/deporteCombo";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { toast } from "react-hot-toast";
 
-export function TorneoForm(){
-    const {register, handleSubmit, setValue, formState:{
-        errors
-    }}=useForm();
-    
-    const navigate = useNavigate();
-    const param = useParams();
+export function TorneoForm() {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
-    //console.log(param);
-    
-    const onSubmit = handleSubmit(async data => {
-        //console.log(data);
-        if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
-            //console.log("Modificando...");
-            const res=await updateTorneo(param.id, data);  // Actualizar un torneo
-            toast.success('Torneo Modificado', {
-                position: "bottom-right",
-                style: {
-                    background: "#101010",
-                    color: "#fff"
-                }
-            });
+  const navigate = useNavigate();
+  const param = useParams();
 
-        }else{
-            const res=await createTorneo(data);  // Crear un torneo
-            toast.success('Torneo Creado', {
-                position: "bottom-right",
-                style: {
-                    background: "#101010",
-                    color: "#fff"
-                }
-            });
-            //console.log(res);
-        }        
-        navigate("/torneos")
-    })
+  //console.log(param);
 
-    // Para rellenar el formulario si hay un parametro en la url
+  const onSubmit = handleSubmit(async (data) => {
+    //console.log(data);
+    if (param.id) {
+      // validacion para saber si voy a crear un libro o modificarlo
+      //console.log("Modificando...");
+      const res = await updateTorneo(param.id, data); // Actualizar un torneo
+      toast.success("Torneo Modificado", {
+        position: "bottom-right",
+        style: {
+          background: "#101010",
+          color: "#fff",
+        },
+      });
+    } else {
+      const res = await createTorneo(data); // Crear un torneo
+      toast.success("Torneo Creado", {
+        position: "bottom-right",
+        style: {
+          background: "#101010",
+          color: "#fff",
+        },
+      });
+      //console.log(res);
+    }
+    navigate("/torneos");
+  });
 
-    useEffect(() => {
-        async function loadTorneo() {
-            if (param.id) {
-                const res = await getTorneo(param.id);
-                const torneo = res.data;
-                //console.log(res);
-                // Coloca los valores en el formulario
-                setValue('nombre', torneo.nombre);
-                setValue('fecha_inicio', torneo.fecha_inicio);
-                setValue('fecha_fin', torneo.fecha_fin);
-                setValue('id_deporte', torneo.id_deporte);
-            }
-        }
-        loadTorneo();
-    }, [param.id, setValue]);
-    
-    return (        
-        <div>
-            <h1>FORMULARIO TORNEOS</h1>
-            <form on onSubmit={onSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
-                    <Form.Text className="text-muted">
-                        {errors.nombre && "El nombre del torneo es requerido"}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Fecha de Inicio</Form.Label>
-                    <Form.Control type="date" placeholder='fecha_inicio' {...register("fecha_inicio", {required: true})}/>
-                    <Form.Text className="text-muted">
-                        {errors.fecha_inicio && "La fecha de inicio es requerida"}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Fecha de Fin</Form.Label>
-                    <Form.Control type="date" placeholder='fecha_fin' {...register("fecha_fin", {required: true})}/>
-                    <Form.Text className="text-muted">
-                        {errors.fecha_fin && "La fecha de fin es requerida"}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Deporte</Form.Label>
-                    <DeporteCombo register={register} setValue={setValue}/>
-                    <Form.Text className="text-muted">
-                        {errors.id_deporte && "El deporte del equipo es requerido"}
-                    </Form.Text>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Guardar
-                </Button><br />
-                {/*<input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
+  // Para rellenar el formulario si hay un parametro en la url
+
+  useEffect(() => {
+    async function loadTorneo() {
+      if (param.id) {
+        const res = await getTorneo(param.id);
+        const torneo = res.data;
+        //console.log(res);
+        // Coloca los valores en el formulario
+        setValue("nombre", torneo.nombre);
+        setValue("fecha_inicio", torneo.fecha_inicio);
+        setValue("fecha_fin", torneo.fecha_fin);
+        setValue("id_deporte", torneo.id_deporte);
+      }
+    }
+    loadTorneo();
+  }, [param.id, setValue]);
+
+  return (
+    <div>
+      <h1 className="text-center pb-4">FORMULARIO TORNEOS</h1>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "50vh" }}
+      >
+        <form on onSubmit={onSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="nombre"
+              {...register("nombre", { required: true })}
+            />
+            <Form.Text className="text-muted">
+              {errors.nombre && "El nombre del torneo es requerido"}
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Fecha de Inicio</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="fecha_inicio"
+              {...register("fecha_inicio", { required: true })}
+            />
+            <Form.Text className="text-muted">
+              {errors.fecha_inicio && "La fecha de inicio es requerida"}
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Fecha de Fin</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="fecha_fin"
+              {...register("fecha_fin", { required: true })}
+            />
+            <Form.Text className="text-muted">
+              {errors.fecha_fin && "La fecha de fin es requerida"}
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Deporte</Form.Label>
+            <DeporteCombo register={register} setValue={setValue} />
+            <Form.Text className="text-muted">
+              {errors.id_deporte && "El deporte del equipo es requerido"}
+            </Form.Text>
+          </Form.Group>
+          <Button variant="success" type="submit">
+            Guardar
+          </Button>
+          <br />
+          {/*<input type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
                 {errors.nombre && <span>El nombre del deporte es requerido</span>}
                 <input type="date" placeholder='fecha_inicio' {...register("fecha_inicio", {required: true})}/>
                 {errors.fecha_inicio && <span>El fecha de inicio es requerida</span>}                
@@ -108,23 +133,31 @@ export function TorneoForm(){
                 <input type="number" placeholder='id_deporte' {...register("id_deporte", {required: true})}/>
                 {errors.id_deporte && <span>El id de deporte es requerido</span>}
                 <button>Guardar</button>*/}
-            </form>
-            {param.id && (
-                <Button variant="primary" onClick={async() => {
-                    const accepted = window.confirm("¿Desea Eliminar el torneo?");
-                    if (accepted){
-                        await deleteTorneo(param.id);  // Eliminar un torneo
-                        toast.success('Torneo Eliminado', {
-                            position: "bottom-right",
-                            style: {
-                                background: "#101010",
-                                color: "#fff"
-                            }
-                        });
-                        navigate("/torneos")
-                    }
-                }}>Borrar</Button>)}
-            {/*param.id && (
+          {param.id && (
+            <Button className="mt-2"
+              variant="danger"
+              onClick={async () => {
+                const accepted = window.confirm("¿Desea Eliminar el torneo?");
+                if (accepted) {
+                  await deleteTorneo(param.id); // Eliminar un torneo
+                  toast.success("Torneo Eliminado", {
+                    position: "bottom-right",
+                    style: {
+                      background: "#101010",
+                      color: "#fff",
+                    },
+                  });
+                  navigate("/torneos");
+                }
+              }}
+            >
+              Eliminar
+            </Button>
+          )}
+        </form>
+      </div>
+
+      {/*param.id && (
                 <button onClick={async() => {
                     const accepted = window.confirm("¿Desea Eliminar el torneo?");
                     if (accepted){
@@ -132,6 +165,6 @@ export function TorneoForm(){
                         navigate("/torneos")
                     }
                 }}>Borrar</button>)*/}
-        </div>
-    )
+    </div>
+  );
 }

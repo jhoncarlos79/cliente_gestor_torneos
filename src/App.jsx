@@ -31,7 +31,7 @@ import { Toaster } from "react-hot-toast"
 
 function Logout(){
   localStorage.clear();
-  return <Navigate to="/login"/>
+  return <Navigate to="/"/>
 }
 
 function RegisterAndLogout(){
@@ -42,9 +42,10 @@ function RegisterAndLogout(){
 function App() {
   return (
     <BrowserRouter>
-      <Navigation/>
+      {<Navigation/>}
       <Routes>
-        <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/register" element={<RegisterAndLogout/>}/>
