@@ -18,6 +18,19 @@ export function FormLogin({route, method}){
         setLoading(true)
         e.preventDefault()
 
+        // Verificamos que los campos esten llenos
+        if (!email || !password) {
+            toast.error('Por favor, complete todos los campos', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
+            setLoading(false);
+            return;
+        }
+
         try {
             const res = await tokenApi.post(route, {email, password});
             console.log(res);
@@ -32,11 +45,18 @@ export function FormLogin({route, method}){
                     }
                 });
                 navigate("/");
-            } else {                
+            } else {  
                 navigate("/login");
             }
         } catch (error) {
-            alert(error);
+            toast.success('Usuario no se autenticado. Por favor inicie sesión para continuar', {
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
+            console.log(error);
         } finally{
             setLoading(false);
         }
@@ -58,7 +78,7 @@ export function FormLogin({route, method}){
                     <Form.Control type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Contraseña" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                {name}
+                    {name}
                 </Button>        
             </form>
         </div>
