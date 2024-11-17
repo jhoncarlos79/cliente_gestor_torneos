@@ -20,6 +20,7 @@ import { Register } from "./pages/register"
 import { Home } from "./pages/home"
 import { NoFound } from "./pages/nofound"
 import { ProtectedRoute } from "./components/ProtectedRoute"
+import { Logout } from "./pages/logout"
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,10 +30,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigation } from "./components/navigation"
 import { Toaster } from "react-hot-toast"
 
-function Logout(){
+/*function Logout(){
   localStorage.clear();
   return <Navigate to="/"/>
-}
+}*/
 
 function RegisterAndLogout(){
   localStorage.clear();
