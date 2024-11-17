@@ -10,7 +10,7 @@ export function InscripcioneList(){
     useEffect(() => {
         async function loadInscripciones() {
             const res=await getAllInscripcione();
-            console.log(res);
+            //console.log(res);
             setInscripciones(res.data);
         }
         loadInscripciones();

@@ -9,7 +9,7 @@ export function TorneosList(){
     useEffect(() => {
         async function loadTorneos() {
             const res=await getAllTorneo();
-            console.log(res);
+            //console.log(res);
             setTorneos(res.data);
         }
         loadTorneos();

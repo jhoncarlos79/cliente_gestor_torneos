@@ -8,7 +8,7 @@ export function EquipoCombo({ register, setValue, campo }){
         async function loadEquipos() {
             try {
                 const res = await getAllEquipo();
-                console.log(res);
+                //console.log(res);
                 setEquipos(res.data);
             } catch (error) {
                 console.error('Error al cargar los Equipos:', error);

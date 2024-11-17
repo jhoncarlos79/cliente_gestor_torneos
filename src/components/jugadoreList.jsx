@@ -9,7 +9,7 @@ export function JugadoreList(){
     useEffect(() => {
         async function loadJugadores() {
             const res=await getAllJugadore();
-            console.log(res);
+            //console.log(res);
             setJugadores(res.data);
         }
         loadJugadores();

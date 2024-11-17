@@ -8,7 +8,7 @@ export function DeporteCombo({ register, setValue }){
         async function loadDeportes() {
             try {
                 const res = await getAllDeporte();
-                console.log(res);
+                //console.log(res);
                 setDeportes(res.data);
             } catch (error) {
                 console.error('Error al cargar los deportes:', error);

@@ -8,7 +8,7 @@ export function TorneoCombo({ register, setValue }){
         async function loadTorneos() {
             try {
                 const res = await getAllTorneo();
-                console.log(res);
+                //console.log(res);
                 setTorneos(res.data);
             } catch (error) {
                 console.error('Error al cargar los torneos:', error);

@@ -7,7 +7,7 @@ export function EquipoValue({id}){
         async function loadEquipos() {
             try {
                 const res = await getEquipo(id);
-                console.log(res);
+                //console.log(res);
                 setEquipos(res.data);
             } catch (error) {
                 console.error('Error al cargar los equipos:', error);

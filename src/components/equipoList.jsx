@@ -9,7 +9,7 @@ export function EquipoList(){
     useEffect(() => {
         async function loadEquipos() {
             const res=await getAllEquipo();
-            console.log(res);
+            //console.log(res);
             setEquipos(res.data);
         }
         loadEquipos();

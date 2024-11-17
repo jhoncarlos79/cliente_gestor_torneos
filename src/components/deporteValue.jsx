@@ -7,7 +7,7 @@ export function DeporteValue({id}){
         async function loadDeportes() {
             try {
                 const res = await getDeporte(id);
-                console.log(res);
+                //console.log(res);
                 setDeportes(res.data);
             } catch (error) {
                 console.error('Error al cargar los deportes:', error);

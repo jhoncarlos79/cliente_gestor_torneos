@@ -80,13 +80,13 @@ export function PartidoForm(){
                         {errors.fecha && "La fecha del partido es requerida"}
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                {/*<Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Hora</Form.Label>
                     <Form.Control type="time" placeholder='hora' {...register("hora", {required: true})}/>
                     <Form.Text className="text-muted">
                         {errors.hora && "La hora del partido es requerida"}
                     </Form.Text>
-                </Form.Group>
+                </Form.Group>*/}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Lugar</Form.Label>
                     <Form.Control type="text" placeholder='lugar' {...register("lugar", {required: true})}/>

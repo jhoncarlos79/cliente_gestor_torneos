@@ -10,7 +10,7 @@ export function PartidoList(){
     useEffect(() => {
         async function loadPartido() {
             const res=await getAllPartido();
-            console.log(res);
+            //console.log(res);
             setPartido(res.data);
         }
         loadPartido();

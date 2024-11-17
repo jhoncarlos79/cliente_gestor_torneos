@@ -8,7 +8,7 @@ export function DeportesList(){
     useEffect(() => {
         async function loadDeportes() {
             const res=await getAllDeporte();
-            console.log(res);
+            //console.log(res);
             setDeportes(res.data);
         }
         loadDeportes();

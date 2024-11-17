@@ -69,10 +69,10 @@ export function JugadoreForm(){
             <h1 className="text-center pb-4">FORMULARIO JUGADORES</h1>
             <div className="d-flex justify-content-center" style={{ height: "50vh" }}>
                 <form on onSubmit={onSubmit}>
-                    <Form.Group controlId="formFileSm" className="mb-3">
+                    {/*<Form.Group controlId="formFileSm" className="mb-3">
                         <Form.Label>Foto de perfil</Form.Label>
                         <Form.Control type="file" size="sm" accept="image/png, image/jpeg"/>
-                    </Form.Group>
+                    </Form.Group>*/}
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control type="text" placeholder='nombre' {...register("nombre", {required: true})}/>
@@ -108,13 +108,13 @@ export function JugadoreForm(){
                             {errors.id_equipo && "El equipo es requerido"}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    {/*<Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Fecha de vinculacion</Form.Label>
                         <Form.Control type="date" placeholder='fecha_vinculacion' {...register("fecha_vinculacion", {required: true})}/>
                         <Form.Text className="text-muted">
                             {errors.fecha_vinculacion && "La fecha de vinculacion es requerida"}
                         </Form.Text>
-                    </Form.Group>
+                    </Form.Group>*/}
                     <Button variant="success" type="submit">
                         Guardar
                     </Button><br />
