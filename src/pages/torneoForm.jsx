@@ -29,7 +29,7 @@ export function TorneoForm() {
   const onSubmit = handleSubmit(async (data) => {
     //console.log(data);
     if (param.id) {
-      // validacion para saber si voy a crear un libro o modificarlo
+      // validacion para saber si voy a crear un torneo o modificarlo
       //console.log("Modificando...");
       const res = await updateTorneo(param.id, data); // Actualizar un torneo
       toast.success("Torneo Modificado", {

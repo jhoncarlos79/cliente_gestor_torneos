@@ -21,7 +21,7 @@ export function InscripcioneForm(){
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
-        if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
+        if( param.id ){  // validacion para saber si voy a crear una inscripcion o modificarla
             //console.log("Modificando...");
             const res=await updateInscripcione(param.id, data);  // Actualizar un inscripcione
             toast.success('Inscripcion Modificado', {

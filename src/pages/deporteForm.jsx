@@ -20,10 +20,10 @@ export function DeporteForm(){
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
-        if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
+        if( param.id ){  // validacion para saber si voy a crear un deporte o modificarlo
             //console.log("Modificando...");
             const res=await updateDeporte(param.id, data);  // Actualizar un deporte
-            toast.success('Libro Modificado', {
+            toast.success('Deporte Modificado', {
                 position: "bottom-right",
                 style: {
                     background: "#101010",
@@ -33,7 +33,7 @@ export function DeporteForm(){
         }else{
             const res=await createDeporte(data);  // Crear un deporte
             //console.log(res);
-            toast.success('Libro Creado', {
+            toast.success('Deporte Creado', {
                 position: "bottom-right",
                 style: {
                     background: "#101010",

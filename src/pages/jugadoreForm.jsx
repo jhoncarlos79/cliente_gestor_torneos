@@ -20,7 +20,7 @@ export function JugadoreForm(){
     
     const onSubmit = handleSubmit(async data => {
         ////console.log(data);
-        if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
+        if( param.id ){  // validacion para saber si voy a crear un jugador o modificarlo
             //console.log("Modificando...");
             const res=await updateJugadore(param.id, data);  // Actualizar un jugadore
             toast.success('Jugador Modificado', {

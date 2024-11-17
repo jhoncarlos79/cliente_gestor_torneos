@@ -21,7 +21,7 @@ export function PartidoForm(){
     
     const onSubmit = handleSubmit(async data => {
         //console.log(data);
-        if( param.id ){  // validacion para saber si voy a crear un libro o modificarlo
+        if( param.id ){  // validacion para saber si voy a crear un partido o modificarlo
             //console.log("Modificando...");
             const res=await updatePartido(param.id, data);  // Actualizar un partido
             toast.success('Partido Modificado', {
